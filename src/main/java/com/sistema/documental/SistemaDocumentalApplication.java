@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +18,10 @@ public class SistemaDocumentalApplication implements CommandLineRunner {
 	@Autowired
 	private UsuarioService usuarioService;
 
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SistemaDocumentalApplication.class, args);
 	}
@@ -24,13 +29,13 @@ public class SistemaDocumentalApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		/*
+/*
 			Usuario usuario = new Usuario();
 
 			usuario.setNombre("Fiorella");
 			usuario.setApellido("Macias");
 			usuario.setUsername("fiore2000");
-			usuario.setPassword("12345");
+			usuario.setPassword(bCryptPasswordEncoder.encode("12345"));
 			usuario.setEmail("fiore@gmail.com");
 			usuario.setTelefono("988212020");
 			usuario.setImagen("foto.png");
